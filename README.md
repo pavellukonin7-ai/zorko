@@ -8,3 +8,5 @@
 - [Тренер Алина Вершинина](demos/fitness/index.html)
 
 Сайт опубликован: https://pavellukonin7-ai.github.io/zorko/
+
+Демо-проекты в папке demos/.
