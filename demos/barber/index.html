@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Чёрный кит — барбершоп</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0e0e;--card:#181818;--line:#2a2a2a;--gold:#d4a24c;--txt:#f2f2f2;--mut:#9a9a9a}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+a{color:inherit;text-decoration:none}.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.02em;line-height:1.05}
+h2{font-size:clamp(34px,5vw,58px);margin-bottom:40px}h2 span{color:var(--gold)}
+section{padding:90px 0}
+.demo{position:fixed;bottom:14px;right:14px;z-index:99;font-size:12px;background:var(--gold);color:#111;padding:6px 12px;border-radius:4px;font-weight:600}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(14,14,14,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:70px}
+.logo{font-family:Oswald;font-size:24px;font-weight:700;letter-spacing:.08em}.logo b{color:var(--gold)}
+nav ul{display:flex;gap:28px;list-style:none;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}nav ul a:hover{color:var(--gold)}
+.btn{display:inline-block;padding:15px 32px;background:var(--gold);color:#111;font:600 15px Inter;text-transform:uppercase;letter-spacing:.08em;border:0;cursor:pointer;transition:.2s}
+.btn:hover{background:#e8b860}.btn:disabled{opacity:.35;cursor:not-allowed}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;padding-top:70px}
+.hero .txt{display:flex;flex-direction:column;justify-content:center;padding:60px 24px 60px max(24px,calc((100vw - 1160px)/2 + 24px))}
+.hero h1{font-size:clamp(54px,8vw,110px)}.hero h1 span{color:var(--gold);display:block}
+.hero p{color:var(--mut);font-size:18px;margin:24px 0 36px;max-width:440px}
+.hero .img{background:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&q=70&auto=format&fit=crop') center/cover,linear-gradient(#333,#111);filter:grayscale(.3)}
+.facts{display:flex;gap:36px;margin-top:46px}.facts b{font-family:Oswald;font-size:36px;color:var(--gold);display:block}.facts span{color:var(--mut);font-size:13px;text-transform:uppercase}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:0 60px}
+.srow{display:flex;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.srow h3{font-size:22px}.srow p{color:var(--mut);font-size:14px}.srow .pr{font-family:Oswald;font-size:26px;color:var(--gold);white-space:nowrap}.srow .t{font-size:13px;color:var(--mut);text-align:right}
+.masters{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.m{background:var(--card);border:1px solid var(--line);transition:.3s}.m:hover{border-color:var(--gold)}
+.m .ph{height:340px;background-size:cover;background-position:center;filter:grayscale(1);transition:.4s}.m:hover .ph{filter:none}
+.m .in{padding:22px}.m h3{font-size:24px}.m .role{color:var(--gold);font-size:13px;text-transform:uppercase;letter-spacing:.08em}.m p{color:var(--mut);font-size:14px;margin-top:8px}
+.booking{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stepper{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
+.stepper div{flex:1;min-width:120px;padding:12px;border-bottom:3px solid var(--line);color:var(--mut);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.stepper div.on{border-color:var(--gold);color:var(--txt)}
+.pane{display:none}.pane.on{display:block}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-bottom:28px}
+.opt{padding:18px;border:1px solid var(--line);cursor:pointer;background:var(--bg);transition:.2s}
+.opt:hover{border-color:#555}.opt.sel{border-color:var(--gold);background:#1f1a10}
+.opt b{display:block;font-family:Oswald;font-size:19px;text-transform:uppercase}.opt span{color:var(--mut);font-size:13px}
+.days{display:flex;gap:10px;overflow-x:auto;margin-bottom:18px;padding-bottom:6px}
+.day{min-width:76px;text-align:center;padding:12px;border:1px solid var(--line);cursor:pointer;background:var(--bg)}.day.sel{border-color:var(--gold);color:var(--gold)}
+.day small{display:block;color:var(--mut);font-size:12px;text-transform:uppercase}.day b{font-family:Oswald;font-size:24px}
+.slots{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.slot{padding:10px 18px;border:1px solid var(--line);cursor:pointer;background:var(--bg)}.slot.sel{background:var(--gold);color:#111;border-color:var(--gold)}.slot.busy{opacity:.3;pointer-events:none;text-decoration:line-through}
+input{width:100%;max-width:420px;display:block;padding:15px;margin-bottom:12px;background:var(--bg);border:1px solid var(--line);color:var(--txt);font:16px Inter}
+.summary{padding:20px;border:1px dashed var(--gold);margin-bottom:22px;max-width:520px}
+.nav-b{display:flex;gap:12px}.back{background:transparent;color:var(--txt);border:1px solid var(--line)}
+.done{text-align:center;padding:40px 0}.done h3{font-size:36px;color:var(--gold)}
+.rev{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.rev div{padding:28px;border:1px solid var(--line)}.rev .st{color:var(--gold);letter-spacing:3px}.rev p{color:#ccc;margin:12px 0}.rev b{font-size:14px}
+footer{padding:50px 0;border-top:1px solid var(--line);color:var(--mut);font-size:14px}footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+@media(max-width:860px){nav ul{display:none}.hero{grid-template-columns:1fr}.hero .img{height:340px;order:-1}.svc,.masters,.rev{grid-template-columns:1fr}}
+</style></head><body>
+<div class="demo">ДЕМО-ПРОЕКТ · <a href="../../">студия «Зорко»</a></div>
+<nav><div class="wrap"><span class="logo">ЧЁРНЫЙ <b>КИТ</b></span><ul><li><a href="#services">Услуги</a></li><li><a href="#masters">Мастера</a></li><li><a href="#reviews">Отзывы</a></li><li><a href="#booking">Запись</a></li></ul><a href="#booking" class="btn" style="padding:10px 20px">Записаться</a></div></nav>
+<section class="hero" style="padding-bottom:0"><div class="txt">
+  <h1>Мужские<span>стрижки</span>без спешки</h1>
+  <p>Барбершоп для тех, кто ценит детали. Классика и современные формы, бритьё опасной бритвой и кофе, пока вы ждёте.</p>
+  <div><a href="#booking" class="btn">Онлайн-запись</a></div>
+  <div class="facts"><div><b>6</b><span>лет работы</span></div><div><b>12 000+</b><span>стрижек</span></div><div><b>4.9★</b><span>на картах</span></div></div>
+</div><div class="img"></div></section>
+
+<section id="services"><div class="wrap"><h2>Услуги <span>и цены</span></h2><div class="svc">
+  <div class="srow"><div><h3>Мужская стрижка</h3><p>Консультация, мытьё, укладка</p></div><div><div class="pr">1 800 ₽</div><div class="t">60 мин</div></div></div>
+  <div class="srow"><div><h3>Стрижка машинкой</h3><p>Одна насадка, окантовка</p></div><div><div class="pr">1 000 ₽</div><div class="t">30 мин</div></div></div>
+  <div class="srow"><div><h3>Моделирование бороды</h3><p>Форма, контуры, уход</p></div><div><div class="pr">1 200 ₽</div><div class="t">40 мин</div></div></div>
+  <div class="srow"><div><h3>Королевское бритьё</h3><p>Горячее полотенце, опасная бритва</p></div><div><div class="pr">1 500 ₽</div><div class="t">45 мин</div></div></div>
+  <div class="srow"><div><h3>Стрижка + борода</h3><p>Комплекс со скидкой</p></div><div><div class="pr">2 600 ₽</div><div class="t">90 мин</div></div></div>
+  <div class="srow"><div><h3>Детская стрижка</h3><p>До 12 лет</p></div><div><div class="pr">1 200 ₽</div><div class="t">40 мин</div></div></div>
+  <div class="srow"><div><h3>Камуфляж седины</h3><p>Тонирование волос или бороды</p></div><div><div class="pr">1 400 ₽</div><div class="t">30 мин</div></div></div>
+  <div class="srow"><div><h3>Отец + сын</h3><p>Две стрижки в одно время</p></div><div><div class="pr">2 700 ₽</div><div class="t">60 мин</div></div></div>
+</div></div></section>
+
+<section id="masters" style="padding-top:0"><div class="wrap"><h2>Наши <span>мастера</span></h2><div class="masters">
+  <div class="m"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=700&q=70&auto=format&fit=crop'),linear-gradient(#444,#111)"></div><div class="in"><span class="role">Топ-барбер</span><h3>Артём</h3><p>9 лет в профессии. Классические стрижки, фейды, работа с ножницами.</p></div></div>
+  <div class="m"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=700&q=70&auto=format&fit=crop'),linear-gradient(#444,#111)"></div><div class="in"><span class="role">Барбер</span><h3>Тимур</h3><p>Специалист по бородам и королевскому бритью. Чемпион городского конкурса.</p></div></div>
+  <div class="m"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=700&q=70&auto=format&fit=crop'),linear-gradient(#444,#111)"></div><div class="in"><span class="role">Барбер</span><h3>Денис</h3><p>Современные текстурные стрижки, кроп, мюллет. Любит эксперименты.</p></div></div>
+</div></div></section>
+
+<section class="booking" id="booking"><div class="wrap"><h2>Онлайн-<span>запись</span></h2>
+  <div class="stepper"><div class="on">1. Услуга</div><div>2. Мастер</div><div>3. Дата и время</div><div>4. Контакты</div></div>
+  <div class="pane on" data-p="0"><div class="opts" data-k="svc">
+    <div class="opt" data-v="Мужская стрижка · 1 800 ₽"><b>Мужская стрижка</b><span>60 мин · 1 800 ₽</span></div>
+    <div class="opt" data-v="Моделирование бороды · 1 200 ₽"><b>Борода</b><span>40 мин · 1 200 ₽</span></div>
+    <div class="opt" data-v="Стрижка + борода · 2 600 ₽"><b>Стрижка + борода</b><span>90 мин · 2 600 ₽</span></div>
+    <div class="opt" data-v="Королевское бритьё · 1 500 ₽"><b>Королевское бритьё</b><span>45 мин · 1 500 ₽</span></div>
+  </div></div>
+  <div class="pane" data-p="1"><div class="opts" data-k="m">
+    <div class="opt" data-v="Артём"><b>Артём</b><span>Топ-барбер · +300 ₽</span></div>
+    <div class="opt" data-v="Тимур"><b>Тимур</b><span>Барбер</span></div>
+    <div class="opt" data-v="Денис"><b>Денис</b><span>Барбер</span></div>
+    <div class="opt" data-v="Любой мастер"><b>Любой мастер</b><span>Ближайшее время</span></div>
+  </div></div>
+  <div class="pane" data-p="2"><div class="days" id="days"></div><div class="slots" id="slots"></div></div>
+  <div class="pane" data-p="3"><div class="summary" id="sum"></div><input id="nm" placeholder="Ваше имя"><input id="tel" placeholder="Телефон"></div>
+  <div class="pane" data-p="4"><div class="done"><h3>Вы записаны!</h3><p style="color:var(--mut)">Это демо: запись никуда не отправлена. На реальном сайте придёт SMS или сообщение в Telegram.</p></div></div>
+  <div class="nav-b" id="navb"><button class="btn back" id="back" style="display:none">Назад</button><button class="btn" id="next" disabled>Далее</button></div>
+</div></section>
+
+<section id="reviews"><div class="wrap"><h2>Что <span>говорят</span></h2><div class="rev">
+  <div><div class="st">★★★★★</div><p>«Хожу к Артёму третий год. Ни разу не ушёл недовольным, а кофе здесь лучше, чем в половине кофеен.»</p><b>Игорь</b></div>
+  <div><div class="st">★★★★★</div><p>«Привёл сына на первую стрижку, мастер нашёл подход за минуту. Теперь ходим вместе.»</p><b>Максим</b></div>
+  <div><div class="st">★★★★★</div><p>«Королевское бритьё — это отдельный вид отдыха. Записываюсь онлайн за пару кликов.»</p><b>Руслан</b></div>
+</div></div></section>
+<footer><div class="wrap"><span class="logo">ЧЁРНЫЙ <b>КИТ</b></span><span>Ежедневно 10:00–22:00 · адрес вымышленный</span><span>Вымышленный барбершоп. Демо-проект студии «Зорко»</span></div></footer>
+<script>
+let step=0;const sel={};const panes=[...document.querySelectorAll('.pane')],st=[...document.querySelectorAll('.stepper div')];
+const next=document.getElementById('next'),back=document.getElementById('back');
+document.querySelectorAll('.opts').forEach(o=>o.addEventListener('click',e=>{const t=e.target.closest('.opt');if(!t)return;o.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));t.classList.add('sel');sel[o.dataset.k]=t.dataset.v;check()}));
+const D=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],days=document.getElementById('days'),slots=document.getElementById('slots');
+for(let i=0;i<10;i++){const d=new Date();d.setDate(d.getDate()+i);const el=document.createElement('div');el.className='day';el.innerHTML='<small>'+(i==0?'Сег':D[d.getDay()])+'</small><b>'+d.getDate()+'</b>';el.onclick=()=>{days.querySelectorAll('.day').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');sel.d=d.toLocaleDateString('ru-RU',{day:'numeric',month:'long'});sel.t=null;renderSlots(i);check()};days.appendChild(el)}
+function renderSlots(seed){slots.innerHTML='';['10:00','11:00','12:00','13:30','15:00','16:00','17:30','19:00','20:00','21:00'].forEach((t,j)=>{const s=document.createElement('div');s.className='slot'+(((j*7+seed*3)%5==0)?' busy':'');s.textContent=t;s.onclick=()=>{slots.querySelectorAll('.slot').forEach(x=>x.classList.remove('sel'));s.classList.add('sel');sel.t=t;check()};slots.appendChild(s)})}
+function check(){next.disabled=!([sel.svc,sel.m,sel.d&&sel.t,true][step])}
+function show(){panes.forEach((p,i)=>p.classList.toggle('on',i==step));st.forEach((s,i)=>s.classList.toggle('on',i<=step));back.style.display=step>0&&step<4?'':'none';next.style.display=step<4?'':'none';next.textContent=step==3?'Записаться':'Далее';
+if(step==3)document.getElementById('sum').innerHTML='<b>'+sel.svc+'</b><br>Мастер: '+sel.m+'<br>'+sel.d+', '+sel.t;check()}
+next.onclick=()=>{step++;show()};back.onclick=()=>{step--;show()};
+</script></body></html>

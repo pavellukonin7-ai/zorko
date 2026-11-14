@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Тёплый двор — кафе и пекарня</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#f7f0e6;--brown:#3b2418;--terra:#c0603a;--olive:#6b7444;--mut:#7d6a5d}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:Jost,sans-serif;background:var(--cream);color:var(--brown);line-height:1.6}
+a{color:inherit;text-decoration:none}.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:700;line-height:1.1}
+h2{font-size:clamp(36px,5vw,56px);margin-bottom:10px;text-align:center}
+.lead{text-align:center;color:var(--mut);margin-bottom:46px}
+section{padding:90px 0}
+.demo{position:fixed;bottom:14px;left:14px;z-index:99;font-size:12px;background:rgba(59,36,24,.85);color:#f7f0e6;padding:6px 12px;border-radius:20px}
+.demo a{text-decoration:underline}
+nav{position:absolute;top:0;left:0;right:0;z-index:10;color:#fff}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:84px}
+.logo{font-family:"Cormorant Garamond";font-size:30px;font-weight:700;font-style:italic}
+nav ul{display:flex;gap:30px;list-style:none;font-size:15px;letter-spacing:.05em;text-transform:uppercase}
+.btn{display:inline-block;padding:14px 30px;border-radius:40px;background:var(--terra);color:#fff;font-weight:600;border:0;cursor:pointer;font-family:inherit;font-size:16px;transition:.2s}
+.btn:hover{background:#a54d2b}.btn.out{background:transparent;border:1px solid #fff}
+.hero{min-height:94vh;display:flex;align-items:center;color:#fff;background:linear-gradient(rgba(30,16,8,.55),rgba(30,16,8,.55)),url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=70&auto=format&fit=crop') center/cover,#3b2418}
+.hero h1{font-size:clamp(52px,9vw,110px);font-style:italic;font-weight:500}
+.hero p{font-size:20px;max-width:520px;margin:18px 0 34px;opacity:.9}
+.hero .hrs{margin-top:46px;display:flex;gap:40px;font-size:15px;opacity:.85;flex-wrap:wrap}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about img{width:100%;border-radius:200px 200px 16px 16px;height:520px;object-fit:cover;background:#d9c4ad}
+.about h2{text-align:left}.about p{color:var(--mut);margin:16px 0}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.feats div{text-align:center;padding:18px 8px;border:1px solid #e3d5c4;border-radius:14px}.feats b{display:block;font-family:"Cormorant Garamond";font-size:34px;color:var(--terra)}
+.menu{background:#fff}
+.tabs{display:flex;justify-content:center;gap:10px;margin-bottom:40px;flex-wrap:wrap}
+.tabs button{padding:10px 24px;border-radius:30px;border:1px solid #e3d5c4;background:transparent;font:500 16px Jost;color:var(--brown);cursor:pointer}
+.tabs button.on{background:var(--brown);color:var(--cream);border-color:var(--brown)}
+.mlist{display:none;grid-template-columns:1fr 1fr;gap:6px 60px;max-width:900px;margin:0 auto}.mlist.on{display:grid}
+.item{display:flex;align-items:baseline;gap:10px;padding:16px 0;border-bottom:1px dashed #e3d5c4}
+.item h3{font-size:24px}.item small{display:block;color:var(--mut);font-family:Jost;font-size:14px;font-weight:400}
+.item .dots{flex:1}.item .pr{font-family:"Cormorant Garamond";font-size:24px;font-weight:700;color:var(--terra);white-space:nowrap}
+.badge{font-size:11px;background:var(--olive);color:#fff;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle;font-family:Jost}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:12px}
+.gal div{border-radius:14px;background-size:cover;background-position:center;transition:.4s}
+.gal div:hover{transform:scale(1.02)}.gal .big{grid-column:span 2;grid-row:span 2}
+.book{background:var(--brown);color:var(--cream)}
+.book .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.book h2{text-align:left}.book p{opacity:.8}
+form{background:var(--cream);color:var(--brown);padding:34px;border-radius:20px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form .full{grid-column:1/-1}
+label{font-size:13px;color:var(--mut);display:block;margin-bottom:4px}
+input,select,textarea{width:100%;padding:13px 14px;border:1px solid #e3d5c4;border-radius:10px;font:16px Jost;background:#fff;color:var(--brown)}
+.guests{display:flex;align-items:center;gap:10px}.guests button{width:42px;height:42px;border-radius:50%;border:1px solid #e3d5c4;background:#fff;font-size:20px;cursor:pointer}.guests span{font-size:20px;min-width:24px;text-align:center}
+.ok{display:none;grid-column:1/-1;background:#e9efd9;color:var(--olive);padding:14px;border-radius:10px}
+footer{padding:50px 0;text-align:center;color:var(--mut);font-size:14px}
+footer .logo{color:var(--brown);display:block;margin-bottom:8px}
+@media(max-width:800px){nav ul{display:none}.about,.book .wrap,.mlist.on{grid-template-columns:1fr}.about img{height:360px}.gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}form{grid-template-columns:1fr}}
+</style></head><body>
+<div class="demo">демо-проект · <a href="../../">студия «Зорко»</a></div>
+<nav><div class="wrap"><span class="logo">Тёплый двор</span><ul><li><a href="#about">О нас</a></li><li><a href="#menu">Меню</a></li><li><a href="#gallery">Галерея</a></li><li><a href="#book">Бронь</a></li></ul></div></nav>
+<header class="hero"><div class="wrap">
+  <p style="letter-spacing:.2em;text-transform:uppercase;font-size:14px;margin:0">Кафе · пекарня · завтраки весь день</p>
+  <h1>Тёплый двор</h1>
+  <p>Свежая выпечка с семи утра, домашняя кухня и кофе от местного обжарщика. Место, куда хочется возвращаться.</p>
+  <a href="#book" class="btn">Забронировать стол</a> &nbsp; <a href="#menu" class="btn out">Смотреть меню</a>
+  <div class="hrs"><span>🕖 Пн–Пт 7:00–22:00</span><span>🕘 Сб–Вс 9:00–23:00</span><span>📍 ул. Садовая, 12 (вымышленный адрес)</span></div>
+</div></header>
+
+<section id="about"><div class="wrap about">
+  <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=70&auto=format&fit=crop" alt="Кофе">
+  <div><h2>Готовим как для своих</h2><p>Мы начинали с маленькой пекарни на шесть мест. Сегодня у нас уютный зал, летняя веранда во дворе и всё та же закваска, которой уже восемь лет.</p><p>Хлеб печём каждое утро, соусы и десерты делаем сами, а овощи берём у фермеров области.</p>
+  <div class="feats"><div><b>8</b>лет закваске</div><div><b>40+</b>блюд в меню</div><div><b>4.9</b>рейтинг гостей</div></div></div>
+</div></section>
+
+<section class="menu" id="menu"><div class="wrap">
+  <h2>Меню</h2><p class="lead">Цены указаны в рублях. Сезонное меню меняется каждый месяц.</p>
+  <div class="tabs"><button class="on" data-t="b">Завтраки</button><button data-t="m">Основное</button><button data-t="d">Десерты</button><button data-t="c">Напитки</button></div>
+  <div class="mlist on" id="b">
+    <div class="item"><h3>Сырники со сметаной<small>ягодный соус, мята</small></h3><span class="dots"></span><span class="pr">390</span></div>
+    <div class="item"><h3>Яйцо пашот на бриоши<small>голландез, шпинат, лосось</small></h3><span class="dots"></span><span class="pr">520</span></div>
+    <div class="item"><h3>Гранола<small>йогурт, мёд, сезонные фрукты</small></h3><span class="dots"></span><span class="pr">340</span></div>
+    <div class="item"><h3>Шакшука<span class="badge">хит</span><small>томаты, перец, фета, хлеб на закваске</small></h3><span class="dots"></span><span class="pr">450</span></div>
+    <div class="item"><h3>Каша дня<small>спросите у официанта</small></h3><span class="dots"></span><span class="pr">260</span></div>
+    <div class="item"><h3>Круассан с ветчиной<small>сыр грюйер, бешамель</small></h3><span class="dots"></span><span class="pr">380</span></div>
+  </div>
+  <div class="mlist" id="m">
+    <div class="item"><h3>Борщ с говядиной<small>пампушки, сало, сметана</small></h3><span class="dots"></span><span class="pr">420</span></div>
+    <div class="item"><h3>Паста с белыми грибами<small>сливки, пармезан</small></h3><span class="dots"></span><span class="pr">590</span></div>
+    <div class="item"><h3>Котлеты по-домашнему<span class="badge">хит</span><small>пюре, маринованный огурец</small></h3><span class="dots"></span><span class="pr">540</span></div>
+    <div class="item"><h3>Тёплый салат с уткой<small>груша, руккола, орехи</small></h3><span class="dots"></span><span class="pr">610</span></div>
+    <div class="item"><h3>Судак с овощами<small>соус бёр блан</small></h3><span class="dots"></span><span class="pr">780</span></div>
+    <div class="item"><h3>Пельмени ручной лепки<small>бульон или сметана</small></h3><span class="dots"></span><span class="pr">480</span></div>
+  </div>
+  <div class="mlist" id="d">
+    <div class="item"><h3>Медовик<span class="badge">хит</span><small>по бабушкиному рецепту</small></h3><span class="dots"></span><span class="pr">320</span></div>
+    <div class="item"><h3>Баскский чизкейк<small>карамель, соль</small></h3><span class="dots"></span><span class="pr">360</span></div>
+    <div class="item"><h3>Наполеон<small>заварной крем</small></h3><span class="dots"></span><span class="pr">310</span></div>
+    <div class="item"><h3>Синнабон<small>сливочный сыр, корица</small></h3><span class="dots"></span><span class="pr">240</span></div>
+  </div>
+  <div class="mlist" id="c">
+    <div class="item"><h3>Капучино<small>250 / 350 мл</small></h3><span class="dots"></span><span class="pr">220 / 260</span></div>
+    <div class="item"><h3>Раф лавандовый<small>350 мл</small></h3><span class="dots"></span><span class="pr">290</span></div>
+    <div class="item"><h3>Фильтр-кофе<small>сорт недели</small></h3><span class="dots"></span><span class="pr">200</span></div>
+    <div class="item"><h3>Облепиховый чай<small>чайник 600 мл</small></h3><span class="dots"></span><span class="pr">380</span></div>
+    <div class="item"><h3>Домашний лимонад<small>манго-маракуйя / тархун</small></h3><span class="dots"></span><span class="pr">270</span></div>
+    <div class="item"><h3>Какао с маршмеллоу<small>300 мл</small></h3><span class="dots"></span><span class="pr">250</span></div>
+  </div>
+</div></section>
+
+<section id="gallery"><div class="wrap">
+  <h2>Атмосфера</h2><p class="lead">Загляните к нам. Летом работает веранда во дворе.</p>
+  <div class="gal">
+    <div class="big" style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=70&auto=format&fit=crop'),linear-gradient(#c9a27e,#6b3e26)"></div>
+    <div style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=70&auto=format&fit=crop'),linear-gradient(#e0b48a,#a35a33)"></div>
+    <div style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=70&auto=format&fit=crop'),linear-gradient(#a3a86b,#4c5230)"></div>
+    <div style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=70&auto=format&fit=crop'),linear-gradient(#d7b796,#5b3826)"></div>
+    <div style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=70&auto=format&fit=crop'),linear-gradient(#c0603a,#3b2418)"></div>
+  </div>
+</div></section>
+
+<section class="book" id="book"><div class="wrap">
+  <div><h2>Забронировать столик</h2><p>Оставьте заявку, и администратор подтвердит бронь в течение 15 минут. Для компаний от 8 человек подготовим банкетное меню.</p><p style="margin-top:20px">☎ +7 (000) 000-00-00 (заглушка)</p></div>
+  <form id="bf">
+    <div><label>Имя</label><input required placeholder="Анна"></div>
+    <div><label>Телефон</label><input required placeholder="+7 ___ ___-__-__"></div>
+    <div><label>Дата</label><input type="date" id="dt"></div>
+    <div><label>Время</label><select><option>12:00</option><option>14:00</option><option>17:00</option><option selected>19:00</option><option>20:30</option></select></div>
+    <div><label>Гостей</label><div class="guests"><button type="button" id="gm">−</button><span id="gn">2</span><button type="button" id="gp">+</button></div></div>
+    <div><label>Зал</label><select><option>Основной зал</option><option>Веранда</option><option>У окна</option></select></div>
+    <div class="full"><label>Пожелания</label><textarea rows="2" placeholder="День рождения, детский стул…"></textarea></div>
+    <button class="btn full" type="submit">Забронировать</button>
+    <div class="ok" id="bok"></div>
+  </form>
+</div></section>
+<footer><span class="logo">Тёплый двор</span>Вымышленное кафе. Демо-проект студии «Зорко», 2026</footer>
+<script>
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button,.mlist').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on')});
+let g=2;const gn=document.getElementById('gn');gm.onclick=()=>{g=Math.max(1,g-1);gn.textContent=g};gp.onclick=()=>{g=Math.min(20,g+1);gn.textContent=g};
+const d=new Date();dt.valueAsDate=d;dt.min=d.toISOString().slice(0,10);
+bf.onsubmit=e=>{e.preventDefault();bok.style.display='block';bok.textContent='Спасибо! Бронь на '+g+' гост.'+' принята (демо: данные никуда не отправляются).'};
+</script></body></html>
